@@ -1,0 +1,26 @@
+{
+  "name": "shorturl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abduljeleelng/shortening-url.git"
+  },
+  "keywords": [
+    "Shortening",
+    "url",
+    "nodejs",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "AbduljeleelNG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abduljeleelng/shortening-url/issues"
+  },
+  "homepage": "https://github.com/abduljeleelng/shortening-url#readme"
+}
