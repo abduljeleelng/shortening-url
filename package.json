@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/abduljeleelng/shortening-url/issues"
   },
-  "homepage": "https://github.com/abduljeleelng/shortening-url#readme"
+  "homepage": "https://github.com/abduljeleelng/shortening-url#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3",
+    "shortid": "^2.2.16",
+    "valid-url": "^1.0.9"
+  }
 }
