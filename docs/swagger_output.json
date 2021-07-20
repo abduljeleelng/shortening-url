@@ -5,7 +5,7 @@
     "title": "Url Shortening services",
     "description": "the services allows the users to shortening the long url "
   },
-  "host": "short.herokuapp.com/api/v1",
+  "host": "https://short-url-dev.herokuapp.com/api/v1",
   "basePath": "/",
   "tags": [],
   "schemes": [
