@@ -28,11 +28,11 @@ app.use('/api/v1/doc', swaggerUi.serve, swaggerUi.setup(swagerFile));
 app.use("/api/v1", router);
 
 app.use("/api", (req, res)=>{
-    res.json({message:"shortening url", doc:"https://short-url-dev.herokuapp.com/doc", app:"https://short-url-dev.herokuapp.com//api/v1"});
+    res.json({message:"shortening url", doc:"https://short-url-dev.herokuapp.com/api/v1/doc/", app:"https://short-url-dev.herokuapp.com/api/v1"});
 });
 
 app.use("/", (req, res)=>{
-    res.json({message:"shortening url", doc:"https://short-url-dev.herokuapp.com/doc", app:"https://short-url-dev.herokuapp.com//api/v1"});
+    res.json({message:"shortening url", doc:"https://short-url-dev.herokuapp.com/api/v1/doc/", app:"https://short-url-dev.herokuapp.com/api/v1"});
 });
 
 module.exports = app;

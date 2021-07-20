@@ -6,7 +6,7 @@ const doc = {
         title: "Url Shortening services",
         description: "the services allows the users to shortening the long url "
     },
-    host: "https://short-url-dev.herokuapp.com/api/v1",
+    host: "short-url-dev.herokuapp.com/api/v1",
     basePath: "/",
     schemes: ['https'],
     consumes: ['application/json'],
