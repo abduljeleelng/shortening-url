@@ -1,0 +1,783 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Url Shortening services",
+    "description": "the services allows the users to shortening the long url "
+  },
+  "host": "short.herokuapp.com/api/v1",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "parameter_name",
+            "in": "body",
+            "description": "This endpoin accepts only valid url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "longUrl": {
+                  "type": "string",
+                  "example": "http://google.com"
+                }
+              },
+              "required": [
+                "longUrl"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully shortening url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "short url successfully ____FUNC____"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "required": [
+                "message",
+                "data"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "failed to shortening url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "error to create short url"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "input Url suspected not to be valid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "url to shortening must be valid"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "403": {
+            "description": "Base Url suspected not to be valid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid shortening domain"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "URL list ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "url fetched"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "count": {
+                        "type": "number",
+                        "example": 3
+                      },
+                      "_id": {
+                        "type": "string",
+                        "example": "60f60348b2a9211548a80fd1"
+                      },
+                      "longUrl": {
+                        "type": "string",
+                        "example": "https://noblesoftsolution.com"
+                      },
+                      "urlCode": {
+                        "type": "string",
+                        "example": "bbnaija"
+                      },
+                      "shortUrl": {
+                        "type": "string",
+                        "example": "http://localhost:9000/api/v1/bbnaija"
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "example": "2021-07-19T22:57:12.396Z"
+                      },
+                      "visitor": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "click": {
+                              "type": "number",
+                              "example": 1
+                            },
+                            "_id": {
+                              "type": "string",
+                              "example": "60f60d23f8f927340cf8e041"
+                            },
+                            "date": {
+                              "type": "string",
+                              "example": "2021-07-19T23:39:15.441Z"
+                            }
+                          }
+                        }
+                      },
+                      "__v": {
+                        "type": "number",
+                        "example": 3
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "example": "2021-07-20T01:26:05.000Z"
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "failed to shortening url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "failed to fetched url"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{urlId}": {
+      "get": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "urlId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "failed to shortening url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "url is not found"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "urlId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parameter_name",
+            "in": "body",
+            "description": "This endpoin accepts only valid url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "longUrl": {
+                  "type": "string",
+                  "example": "http://google.com"
+                }
+              },
+              "required": [
+                "longUrl"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "update long url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "url updated"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "60f60348b2a9211548a80fd1"
+                    },
+                    "longUrl": {
+                      "type": "string",
+                      "example": "https://noblesoftsolution.com"
+                    },
+                    "urlCode": {
+                      "type": "string",
+                      "example": "bbnaija"
+                    },
+                    "shortUrl": {
+                      "type": "string",
+                      "example": "http://localhost:9000/api/v1/bbnaija"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2021-07-19T22:57:12.396Z"
+                    },
+                    "visitor": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "click": {
+                            "type": "number",
+                            "example": 1
+                          },
+                          "_id": {
+                            "type": "string",
+                            "example": "60f60d23f8f927340cf8e041"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "2021-07-19T23:39:15.441Z"
+                          }
+                        }
+                      }
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2021-07-20T01:26:05.000Z"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Url must be valid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "failed to update url"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "402": {
+            "description": "Url must be valid",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid shortening url"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "urlId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete url url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "url deleted"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "60f60348b2a9211548a80fd1"
+                    },
+                    "longUrl": {
+                      "type": "string",
+                      "example": "https://noblesoftsolution.com"
+                    },
+                    "urlCode": {
+                      "type": "string",
+                      "example": "bbnaija"
+                    },
+                    "shortUrl": {
+                      "type": "string",
+                      "example": "http://localhost:9000/api/v1/bbnaija"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2021-07-19T22:57:12.396Z"
+                    },
+                    "visitor": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "click": {
+                            "type": "number",
+                            "example": 1
+                          },
+                          "_id": {
+                            "type": "string",
+                            "example": "60f60d23f8f927340cf8e041"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "2021-07-19T23:39:15.441Z"
+                          }
+                        }
+                      }
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2021-07-20T01:26:05.000Z"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "405": {
+            "description": "Failed to delete url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "failed to deleteurl"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/detail/{urlId}": {
+      "get": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "urlId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "URL list ",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "url fetched"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "60f60348b2a9211548a80fd1"
+                    },
+                    "longUrl": {
+                      "type": "string",
+                      "example": "https://noblesoftsolution.com"
+                    },
+                    "urlCode": {
+                      "type": "string",
+                      "example": "bbnaija"
+                    },
+                    "shortUrl": {
+                      "type": "string",
+                      "example": "http://localhost:9000/api/v1/bbnaija"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2021-07-19T22:57:12.396Z"
+                    },
+                    "visitor": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "click": {
+                            "type": "number",
+                            "example": 1
+                          },
+                          "_id": {
+                            "type": "string",
+                            "example": "60f60d23f8f927340cf8e041"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "2021-07-19T23:39:15.441Z"
+                          }
+                        }
+                      }
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2021-07-20T01:26:05.000Z"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "failed to shortening url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "url is not found"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/custom/{urlId}": {
+      "put": {
+        "tags": [
+          "url"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "urlId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "parameter_name",
+            "in": "body",
+            "description": "This endpoin accepts only valid url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "urlCode": {
+                  "type": "string",
+                  "example": "bbnaija"
+                }
+              },
+              "required": [
+                "urlCode"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete url url",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "custome url created"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "count": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "_id": {
+                      "type": "string",
+                      "example": "60f60348b2a9211548a80fd1"
+                    },
+                    "longUrl": {
+                      "type": "string",
+                      "example": "https://noblesoftsolution.com"
+                    },
+                    "urlCode": {
+                      "type": "string",
+                      "example": "bbnaija"
+                    },
+                    "shortUrl": {
+                      "type": "string",
+                      "example": "http://localhost:9000/api/v1/bbnaija"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2021-07-19T22:57:12.396Z"
+                    },
+                    "visitor": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "click": {
+                            "type": "number",
+                            "example": 1
+                          },
+                          "_id": {
+                            "type": "string",
+                            "example": "60f60d23f8f927340cf8e041"
+                          },
+                          "date": {
+                            "type": "string",
+                            "example": "2021-07-19T23:39:15.441Z"
+                          }
+                        }
+                      }
+                    },
+                    "__v": {
+                      "type": "number",
+                      "example": 3
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2021-07-20T01:26:05.000Z"
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "failed to create custome url, please try again",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "faile to create custom url"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "405": {
+            "description": "url code not available, choose another unique code",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "url code is not available, choose another code"
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "[_[get]_])(/_undefined_path_0x182": {
+      "get": {
+        "tags": [
+          {
+            "name": "Endpoints without path or method"
+          }
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {}
+}

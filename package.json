@@ -2,9 +2,16 @@
   "name": "shorturl",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack",
+    "clean": "npx rimraf build",
+    "dev-build": "npm run clean && npm run build && node build/index.js",
+    "heroku-postbuild": "npm run clean && npm run build",
+    "start": "node build/index.js",
+    "dev": "nodemon index.js",
+    "docs": "node swagger.js"
   },
   "repository": {
     "type": "git",
@@ -24,9 +31,29 @@
   },
   "homepage": "https://github.com/abduljeleelng/shortening-url#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-validator": "^5.3.1",
+    "helmet": "^4.6.0",
+    "lodash": "^4.17.21",
     "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
     "shortid": "^2.2.16",
     "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "nodemon": "^2.0.12",
+    "swagger-autogen": "^2.5.6",
+    "swagger-ui-express": "^4.1.6",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-node-externals": "^1.7.2"
   }
 }
