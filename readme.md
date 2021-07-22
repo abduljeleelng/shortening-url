@@ -48,6 +48,13 @@ Run the development version of the App
 ```bash
 npm run dev
 ```
+
+Rebuild documentation
+
+```bash
+npm run docs
+```
+
 Run Automated test 
 
 ```
