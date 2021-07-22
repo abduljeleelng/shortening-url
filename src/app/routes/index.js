@@ -9,8 +9,12 @@ router.get('/', Ctr.urlList)
 router.get('/:urlId', Ctr.url)
 router.put('/:urlId', Ctr.updateUrl)
 router.delete('/:urlId', Ctr.deleteUrl)
-router.get('/detail/:urlId', Ctr.detailOfUrl)
+router.get('/statistic/:urlId', Ctr.detailOfUrl)
 router.put('/custom/:urlId', Mid.customUrl, Ctr.customUrl)
+
+
+
+
 
 
 

@@ -11,8 +11,8 @@ const helmet = require('helmet');
 const dotenv = require("dotenv");
 const path = require('path')
 dotenv.config();
-dbConnection();
 
+dbConnection.connect();
 
 const swagerFile = require('../docs/swagger_output.json');
 const router = require('./app');

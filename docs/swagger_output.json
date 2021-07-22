@@ -244,6 +244,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "404": {
             "description": "failed to shortening url",
             "schema": {
@@ -512,7 +515,7 @@
         }
       }
     },
-    "/detail/{urlId}": {
+    "/statistic/{urlId}": {
       "get": {
         "tags": [
           "url"
@@ -766,7 +769,7 @@
         }
       }
     },
-    "[_[get]_])(/_undefined_path_0x182": {
+    "[_[get]_])(/_undefined_path_0x18d": {
       "get": {
         "tags": [
           {

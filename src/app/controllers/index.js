@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
-const validUrl = require('valid-url')
-const shortid = require('shortid')
+const validUrl = require('valid-url');
+const shortid = require('shortid');
 const _ = require('lodash');
+
+
 const models = require("../../models");
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:9000/api/v1";
@@ -80,7 +82,7 @@ exports.urlById = async (req, res, next, id)=>{
                     schema: { $error: 'url is not found' }
                 } 
             */
-        return res.status(404).json({error:"url is not found",})
+        return res.status(404).json({error:"url is not found"})
     }
     req.url = data
     next();
@@ -141,9 +143,9 @@ exports.url = async (req, res)=>{
         return res.status(404).json({error:"url is not found", url})
     }
     url.count++
-    url.visitor = [{ date:new Date(), click:+1 }]
+    url.visitor.push({ click:1, date:Date(), ip:req.ip })
     await url.save()
-    return res.redirect(url.longUrl)
+    return res.status(200).redirect(url.longUrl)
 }
 exports.detailOfUrl = async (req, res)=>{
     // #swagger.start
@@ -327,6 +329,7 @@ exports.customUrl = async (req, res)=>{
             */
             return res.status(400).json({error:"faile to create custom url"})
         }
+        
         /* #swagger.responses[200] = {
         description: 'delete url url',
         schema: {

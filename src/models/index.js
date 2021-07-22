@@ -27,6 +27,7 @@ const urlSchema = mongoose.Schema({
             type:Number,
             default:0,
         },
+        ip:String,
     }],
     created_at:Date,
     updated_at:Date,
