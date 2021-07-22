@@ -60,6 +60,7 @@ Run Automated test
 ```
 npm run test
 ```
+<img src="test-demo.gif" align="center" />
 
 Build for production 
 ```bash
