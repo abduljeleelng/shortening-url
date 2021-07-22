@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
-const validUrl = require('valid-url')
-const shortid = require('shortid')
+const validUrl = require('valid-url');
+const shortid = require('shortid');
 const _ = require('lodash');
+
+
 const models = require("../../models");
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:9000/api/v1";
@@ -141,7 +143,7 @@ exports.url = async (req, res)=>{
         return res.status(404).json({error:"url is not found", url})
     }
     url.count++
-    url.visitor = [{ date:new Date(), click:+1 }]
+    url.visitor.push({ click:1, date:Date(), ip:req.ip })
     await url.save()
     return res.status(200).redirect(url.longUrl)
 }
