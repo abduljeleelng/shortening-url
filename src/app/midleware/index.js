@@ -8,7 +8,7 @@ exports.urlCreator= (req, res, next) => {
     next();
 };
 
-exports.customUrl= (req, res, next) => {
+exports.customUrl = (req, res, next) => {
     req.check('urlCode', 'url code is required').notEmpty();
     const errors = req.validationErrors();
     if (errors) {
@@ -17,3 +17,5 @@ exports.customUrl= (req, res, next) => {
     }
     next();
 };
+
+

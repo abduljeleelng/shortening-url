@@ -80,7 +80,7 @@ exports.urlById = async (req, res, next, id)=>{
                     schema: { $error: 'url is not found' }
                 } 
             */
-        return res.status(404).json({error:"url is not found",})
+        return res.status(404).json({error:"url is not found"})
     }
     req.url = data
     next();
@@ -143,7 +143,7 @@ exports.url = async (req, res)=>{
     url.count++
     url.visitor = [{ date:new Date(), click:+1 }]
     await url.save()
-    return res.redirect(url.longUrl)
+    return res.status(200).redirect(url.longUrl)
 }
 exports.detailOfUrl = async (req, res)=>{
     // #swagger.start
@@ -327,6 +327,7 @@ exports.customUrl = async (req, res)=>{
             */
             return res.status(400).json({error:"faile to create custom url"})
         }
+        
         /* #swagger.responses[200] = {
         description: 'delete url url',
         schema: {
